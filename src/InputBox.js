@@ -4,9 +4,14 @@ const InputBox = (props) => {
     const input = useRef();
     useEffect(() => props.setState && props.setState(input.current.value));
     return (
-        <div>
-            <textarea ref={input} />
-        </div>
+        <pre>
+            <code>
+                <textarea
+                    style={{ width: "45vw", height: "65vh" }}
+                    ref={input}
+                />
+            </code>
+        </pre>
     );
 };
 

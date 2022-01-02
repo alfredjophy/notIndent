@@ -8,14 +8,35 @@ import OutputBox from "./OutputBox";
 const App = () => {
     const [inputCode, setInput] = useState("");
     const [proceed, setProceed] = useState(false);
+    const [editorLanguage, setEditorLanguage] = useState("javascript");
 
     useEffect(() => setProceed(false), [inputCode]);
     return (
         <div>
             <h1>NotIndent - the negative indenter</h1>
-            <button onClick={() => setProceed(true)}>notIndet...?</button>
-            <InputBox setState={proceed ? setInput : null} />
-            <OutputBox code={inputCode} />
+            <fieldset>
+                <legend>Choose language:</legend>
+                <input
+                    type="radio"
+                    id="javascript"
+                    name="language"
+                    value="javascript"
+                    checked={editorLanguage === "javascript"}
+                    onChange={() => setEditorLanguage("javascript")}
+                />
+                <label htmlFor="javascript">JavaScript</label>
+            </fieldset>
+
+            <center>
+                <button onClick={() => setProceed(true)}>notIndet...?</button>
+            </center>
+            <div className="editor">
+                <InputBox
+                    setState={proceed ? setInput : null}
+                    lang={editorLanguage}
+                />
+                <OutputBox code={inputCode} lang={editorLanguage} />
+            </div>
         </div>
     );
 };

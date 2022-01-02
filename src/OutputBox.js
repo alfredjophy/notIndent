@@ -1,24 +1,37 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import prettier from "prettier";
 import parserBabel from "prettier/parser-babel";
+
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import not_indent from "./notindent";
 
 const OutputBox = (props) => {
     const output = useRef();
+    const [codeString, setCode] = useState("");
     useEffect(() => {
-        const formattedCode = prettier.format(props.code, {
-            parser: "babel",
-            plugins: [parserBabel],
-            tabWidth: 4,
-        });
+        if (!props.code) return;
+        let formattedCode;
+        try {
+            formattedCode = prettier.format(props.code, {
+                parser: "babel",
+                plugins: [parserBabel],
+                tabWidth: 4,
+            });
+        } catch (error) {
+            alert(error + "\n" + "!!!!Seriously, fix your code first..");
+            return;
+        }
         const notIndentedCode = not_indent(formattedCode);
-        output.current.value = notIndentedCode;
+        setCode(notIndentedCode);
     }, [props.code]);
 
     return (
-        <div>
-            <textarea ref={output} />
+        <div style={{ width: "45vw", height: "65vh" }}>
+            <SyntaxHighlighter language={props.lang} style={atomOneDark}>
+                {codeString}
+            </SyntaxHighlighter>
         </div>
     );
 };
