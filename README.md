@@ -9,7 +9,7 @@ I had an inspiration, a call from above.
 
 The world needs negative indentation, and I have to make it.
 
-So, here I present to you (NotIdent)[https://alfredjophy.ml/notIdent]. (plz dont ask me why)
+So, here I present to you [NotIdent](https://alfredjophy.ml/notIdent). (plz dont ask me why)
 
 
 *P.S i made this in a few hours...my react are not that great, my CSS skills are evident, would love some PRs*
