@@ -1,18 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+
+import Editor from "./editor";
 
 const InputBox = (props) => {
-    const input = useRef();
-    useEffect(() => props.setState && props.setState(input.current.value));
-    return (
-        <pre>
-            <code>
-                <textarea
-                    style={{ width: "45vw", height: "65vh" }}
-                    ref={input}
-                />
-            </code>
-        </pre>
-    );
+    const [code, setCode] = useState("");
+    useEffect(() => {
+        if (props.setState != null) props.setState(code);
+    }, [code, props.setState]);
+    return <Editor lang="javascript" setState={setCode} value={code} />;
 };
 
 export default InputBox;

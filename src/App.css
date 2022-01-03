@@ -16,4 +16,5 @@ button {
 .editor {
     display: flex;
     padding: 15px;
+    align-content: center;
 }
